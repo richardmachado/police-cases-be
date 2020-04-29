@@ -16,5 +16,6 @@ server.get('/', (req, res) => {
 	res.send("server's here!");
 });
 
+server.use('/docs', express.static('./docs'));
 
 module.exports = server;

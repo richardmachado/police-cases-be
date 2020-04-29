@@ -1,6 +1,6 @@
 exports.up = function(knex) {
     return knex.schema
-        .createTable('users', table => {
+        .createTable('user', table => {
             table.increments();
             table.string("username")
                 .unique()
@@ -9,7 +9,7 @@ exports.up = function(knex) {
                 .notNullable();
 
     })
-        .createTable('officers', table => {
+        .createTable('officer', table => {
             table.increments();
             table.string('status')
                 .notNullable();

@@ -4,6 +4,33 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secret = require("../../secrets/secrets");
 
+ /** 
+* @api {post} api/auth/register   Create a new user
+* @apiName registerUser
+* @apiGroup Login/Register
+* 
+* @apiParam {String} username User's desired login- can be an email address or a username
+* @apiParam {String} password User's desired password
+*
+* @apiParamExample Example Body:
+* {
+*	"username": "bruce@banner.com",
+*	"password": "pass"   
+* }
+
+* @apiSuccessExample Successful Response
+* HTTP/1.1 200 OK
+*{
+*  "message": "Thanks for registering, $username!",
+*  "user": {
+*    "id": $id,
+*    "username": "$username",
+*    "password": "HashedPassword"
+*  },
+*  "token": "$token"
+* }
+*/
+
 router.post("/register", (req, res) => {
   // implement registration
   let userData = req.body;
@@ -23,6 +50,43 @@ router.post("/register", (req, res) => {
       res.status(500).json({ Error: "failed to retrieve database", err });
     });
 });
+
+
+/** 
+* @api {post} api/auth/login   Login a user
+* @apiName LoginUser
+* @apiGroup Login/Register
+* 
+* @apiParam {String} username User's registered login
+* @apiParam {String} password User's registered password
+*
+* @apiParamExample Example Body:
+* {
+*	"username": "bruce@banner.com",
+*	"password": "pass"   
+* }
+
+* @apiSuccessExample Successful Response
+* HTTP/1.1 200 OK
+*{
+*  "message": "Welcome back, $username!",
+*  "user": {
+*    "id": $id,
+*    "username": "$username",
+*    "password": "HashedPassword"
+*  },
+*  "token": "$token"
+* }
+ * @apiError UserNotFound The id/password of the User was not found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *       "error":  "message": "invalid username/password"
+ *     }
+ */
+
+
 
 router.post("/login", (req, res) => {
   // implement login

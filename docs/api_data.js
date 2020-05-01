@@ -218,8 +218,8 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "api/users/:id/students",
-    "title": "GET a list of Students belonging to a professor/user",
+    "url": "api/users/:id/cases",
+    "title": "GET cases belonging to that userid",
     "name": "getStudentList",
     "group": "Users",
     "parameter": {

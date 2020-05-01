@@ -14,7 +14,7 @@ const secret = require("../../secrets/secrets");
 *
 * @apiParamExample Example Body:
 * {
-*	"username": "bruce@banner.com",
+*	"username": "mahoney",
 *	"password": "pass"   
 * }
 
@@ -62,7 +62,7 @@ router.post("/register", (req, res) => {
 *
 * @apiParamExample Example Body:
 * {
-*	"username": "bruce@banner.com",
+*	"username": "hightower",
 *	"password": "pass"   
 * }
 
@@ -125,6 +125,8 @@ function genToken(user) {
   const token = jwt.sign(payload, secret.jwtSecret, options);
   return token;
 }
+
+
 
 module.exports = router;
 

@@ -8,6 +8,8 @@ backend deployed at https://police-cases.herokuapp.com/
 
 documentation
 
+https://police-cases.herokuapp.com/docs
+
 auth
 
 api/auth/register - register

@@ -55,7 +55,7 @@
       "examples": [
         {
           "title": "Example Body:",
-          "content": "{\n\t\"username\": \"bruce@banner.com\",\n\t\"password\": \"pass\"   \n}",
+          "content": "{\n\t\"username\": \"hightower\",\n\t\"password\": \"pass\"   \n}",
           "type": "json"
         }
       ]
@@ -120,7 +120,7 @@
       "examples": [
         {
           "title": "Example Body:",
-          "content": "{\n\t\"username\": \"bruce@banner.com\",\n\t\"password\": \"pass\"   \n}",
+          "content": "{\n\t\"username\": \"mahoney\",\n\t\"password\": \"pass\"   \n}",
           "type": "json"
         }
       ]
@@ -137,5 +137,182 @@
     "version": "0.0.0",
     "filename": "./api/auth/auth.router.js",
     "groupTitle": "Login/Register"
+  },
+  {
+    "type": "delete",
+    "url": "api/users/:id",
+    "title": "DELETE a User",
+    "name": "deleteUser",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Successful Response",
+          "content": "HTTP/1.1 200 OK\n{\n   \"removed\": 1\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.routes.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "put",
+    "url": "api/users/:id",
+    "title": "EDIT a User by Id",
+    "name": "editUser",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>User email is used for username</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>user password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Successful Response",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.routes.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "api/users/:id/cases",
+    "title": "GET cases belonging to that userid",
+    "name": "getStudentList",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Successful Response",
+          "content": "HTTP/1.1 200 OK\n[\n   {\n       \"studentId\": 1,\n       \"name\": \"Calvin Riley\",\n       \"email\": \"calvin@gmail.com\",\n       \"image_url\": \"https://ibb.co/D517kWp\"\n   },\n   {\n       \"studentId\": 2,\n       \"name\": \"Cindy Lou\",\n       \"email\": \"cindy@gmail.com\",\n       \"image_url\": \"https://ibb.co/gjnrsxT\"\n   },\n   {\n       \"studentId\": 3,\n       \"name\": \"John Smith\",\n       \"email\": \"john@gmail.com\",\n       \"image_url\": \"https://ibb.co/Pr9g04c\"\n   },\n  {\n       \"studentId\": 4,\n       \"name\": \"Julian Mills\",\n       \"email\": \"julian@gmail.com\",\n       \"image_url\": \"https://ibb.co/R6kSgDG\"\n   },\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.routes.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "api/users/:id",
+    "title": "GET a User by Id",
+    "name": "getUserById",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 2,\n  \"username\": \"Mahoney\",\n  \"password\": \"pass\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/users.routes.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "api/users",
+    "title": "GET a list of all users",
+    "name": "getUsers",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "./routes/users.routes.js",
+    "groupTitle": "Users"
   }
 ]

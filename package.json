@@ -29,8 +29,10 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.3",
     "pg": "^8.0.3",
     "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

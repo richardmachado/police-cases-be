@@ -1,26 +1,26 @@
 const db = require('../data/db-config');
 
 module.exports = {
-    getVictim,
-    findVictimById,
-    updateVictim,
-    removeVictim,
-    addVictim
+    getCases,
+    findCaseById,
+    updateCase,
+    removeCase,
+    addCase
 
 }
 
-function getVictim() {
-    return db.select("*").from('victim')
+function getCases() {
+    return db.select("*").from('case')
 }
 
-function findVictimById(id) {
-    return db('victim')
+function findCaseById(id) {
+    return db('case')
     .where({id})
     .first()
 }
 
 // function updateVictim(changes, id){
-//     return db('victim')
+//     return db('case')
 //     .where("id", id)
 //     .update(changes)
 //     .then(count=> {
@@ -32,27 +32,27 @@ function findVictimById(id) {
 //     })
 // }
 
-function updateVictim(changes, id){
-    return db('victim')
+function updateCase(changes, id){
+    return db('case')
     .where('id', id)
     .update(changes)
     .then(updated => {
-        updated > 0 ? findVictimById(id) : null
+        updated > 0 ? findCaseById(id) : null
     })
 }
 
-function removeVictim (id) {
-    return db('victim')
+function removeCase(id) {
+    return db('case')
     .where('id', id)
     .del()
     
 }
 
-function addVictim(newVictim){
-    return db('victim')
-    .insert(newVictim)
+function addCase(newCase){
+    return db('case')
+    .insert(newCase)
     .then(ids => {
         const [id] = ids
-        return findVictimById(id)
+        return findCaseById(id)
     })
 }

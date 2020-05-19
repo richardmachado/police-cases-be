@@ -6,7 +6,7 @@ const router = express.Router();
 
 /** 
 * @api {get} api/victims GET a list of all victims
-* @apiName getVictim
+* @apiName getVictims
 * @apiGroup Victim
 */
 
@@ -19,7 +19,23 @@ router.get('/', (req, res) => {
         console.log(err)
         res.status(500).json({errorMessage: "Database failed to get victims. Contact your backend"})
     })
- });
+});
+ 
+router.post('/', (req, res) => {
+    const studentData = req.body;
+
+    Victim.addVictim(studentData)
+    .then(student => {
+        res.status(201).json(student)
+        
+    })
+    .catch(err => {
+      
+        res.status(500).json({errorMessage: 'Failed to create student. Please contact your backend'})
+    })
+    
+});
+
 
  /** 
 * @api {get} api/victims/:id GET a User by Id
@@ -32,7 +48,7 @@ router.get('/', (req, res) => {
 * HTTP/1.1 200 OK
 *{
 *   "id": 2,
-*   "username": "Mahoney",
+*   "victimname": "Mahoney",
 *   "password": "pass"
 *}
 */
@@ -40,16 +56,16 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const {id} = req.params;
 
-    Victim.findUserById(id)
-    .then(user => {
-        if (user) {
-            res.json(user)
+    Victim.findVictimById(id)
+    .then(victim => {
+        if (victim) {
+            res.json(victim)
         } else {
-            res.status(404).json({message: 'There is no user with that id'})
+            res.status(404).json({message: 'There is no victim with that id'})
         }
     })
     .catch(err => {
-        res.status(500).json({errorMessage: 'Failed to get user. Contact your backend'})
+        res.status(500).json({errorMessage: 'Failed to get victim. Contact your backend'})
     })
 });
 
@@ -58,8 +74,8 @@ router.get('/:id', (req, res) => {
 * @apiName editUser
 * @apiGroup Victim
 * @apiParam {Number} id User id
-* @apiParam {String} username User email is used for username
-* @apiParam {String} password user password
+* @apiParam {String} victimname User email is used for victimname
+* @apiParam {String} password victim password
 *
 * @apiSuccessExample Successful Response
 * HTTP/1.1 200 OK
@@ -69,19 +85,19 @@ router.put('/:id', (req, res) => {
     const {id} = req.params;
     const changes = req.body;
 
-    Victim.findUserById(id)
-    .then(user => {
-        if (user) {
+    Victim.findVictimById(id)
+    .then(victim => {
+        if (victim) {
             Victim.updateUser(changes, id)
             .then(updatedUser => {
                 res.json(updatedUser);
             })
         } else {
-            res.status(404).json({message: "No user with that id exists"})
+            res.status(404).json({message: "No victim with that id exists"})
         }
     })
     .catch(err => {
-        res.status(500).json({message: "Failed to update user. Contact your backend"})
+        res.status(500).json({message: "Failed to update victim. Contact your backend"})
     })
 });
 
@@ -101,70 +117,47 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     const {id} = req.params;
 
-    Victim.removeUser(id)
+    Victim.removeVictim(id)
     .then(deleted => {
         if (deleted) {
             res.json({removed: deleted})
         } else {
-            res.status(404).json({message: 'No user with that id exists'})
+            res.status(404).json({message: 'No victim with that id exists'})
         }
     })
     .catch(err => {
-        res.status(500).json({errorMessage: "Failed to delete user. Contact your backend"})
+        res.status(500).json({errorMessage: "Failed to delete victim. Contact your backend"})
     })
 });
 
 
 // need to refactor to cases by id 
 
- /** 
-* @api {get} api/victims/:id/cases GET cases belonging to that userid
-* @apiName getStudentList
-* @apiGroup Victim
-*
-* @apiParam {Number} id User id
-*
-* @apiSuccessExample Successful Response
-* HTTP/1.1 200 OK
-*[
-*    {
-*        "studentId": 1,
-*        "name": "Calvin Riley",
-*        "email": "calvin@gmail.com",
-*        "image_url": "https://ibb.co/D517kWp"
-*    },
-*    {
-*        "studentId": 2,
-*        "name": "Cindy Lou",
-*        "email": "cindy@gmail.com",
-*        "image_url": "https://ibb.co/gjnrsxT"
-*    },
-*    {
-*        "studentId": 3,
-*        "name": "John Smith",
-*        "email": "john@gmail.com",
-*        "image_url": "https://ibb.co/Pr9g04c"
-*    },
-*   {
-*        "studentId": 4,
-*        "name": "Julian Mills",
-*        "email": "julian@gmail.com",
-*        "image_url": "https://ibb.co/R6kSgDG"
-*    },
-* ]
-*/
+//  /** 
+// * @api {get} api/victims/:id/cases GET cases belonging to that victimid
+// * @apiName getStudentList
+// * @apiGroup Victim
+// *
+// * @apiParam {Number} id User id
+// *
+// * @apiSuccessExample Successful Response
+// * HTTP/1.1 200 OK
+// *[
+// * Enter a sample JSON response
+// * ]
+// */
 
-router.get('/:id/victims', (req, res) => {
-    const {id} = req.params
+// router.get('/:id/victims', (req, res) => {
+//     const {id} = req.params
 
-    Victim.getStudentList(id)
-    .then(students => {
-        res.json(students)
-    })
-    .catch(err => {
-        console.log(err)
-        res.status(500).json({errorMessage: "Database failed to get victims. Contact your backend"})
-    })
- });
+//     Victim.getStudentList(id)
+//     .then(students => {
+//         res.json(students)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//         res.status(500).json({errorMessage: "Database failed to get victims. Contact your backend"})
+//     })
+//  });
 
 module.exports = router;

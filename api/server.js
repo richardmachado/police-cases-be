@@ -3,8 +3,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const loginRouter = require('./auth/auth.router.js');
-const usersRouter = require('../routes/users.routes')
-const victimRouter = require('../routes/victim.routes')
+const usersRouter = require('../routes/users.routes');
+const victimRouter = require('../routes/victim.routes');
+const caseRouter = require('../routes/case.routes');
 
 const server = express();
 
@@ -16,6 +17,7 @@ server.use(express.json());
 server.use('/api/auth', loginRouter);
 server.use('/api/users', usersRouter);
 server.use('/api/victims', victimRouter);
+server.use('/api/cases', caseRouter);
 
 
 server.get('/', (req, res) => {

@@ -15,7 +15,7 @@ server.use(express.json());
 
 server.use('/api/auth', loginRouter);
 server.use('/api/users', usersRouter);
-server.use('/api/victim', victimRouter);
+server.use('/api/victims', victimRouter);
 
 
 server.get('/', (req, res) => {

@@ -25,7 +25,7 @@ exports.up = function (knex) {
             table.string("sex")
                 .notNullable();
             table.string("address");
-            table.string("deceased")
+            table.boolean("deceased");
             table.integer("case_id")
                 .references('id')
                 .inTable('case')

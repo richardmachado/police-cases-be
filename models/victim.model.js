@@ -1,39 +1,38 @@
 const db = require('../data/db-config');
 
 module.exports = {
-    getUsers,
-    findUserById,
-    updateUser,
-    removeUser,
-    // getStudentList
+    getVictim,
+    findVictimById,
+    updateVictim,
+    removeVictim
 
 }
 
-function getUsers() {
-    return db.select("*").from('user')
+function getVictim() {
+    return db.select("*").from('victim')
 }
 
-function findUserById(id) {
-    return db('user')
+function findVictimById(id) {
+    return db('victim')
     .where({id})
     .first()
 }
 
-function updateUser(changes, id){
-    return db('user')
+function updateVictim(changes, id){
+    return db('victim')
     .where({id})
     .update(changes)
     .then(count=> {
         if (count > 0) {
-            return findUserById(id)
+            return findVictimById(id)
         } else {
             return null;
         }
     })
 }
 
-function removeUser (id) {
-    return db('user')
+function removeVictim (id) {
+    return db('victim')
     .where('id', id)
     .del()
     
@@ -42,7 +41,7 @@ function removeUser (id) {
 // function getStudentList(id) {
     
 //     return db('cases as c')
-//     .join('user as u', 'c.professor_id', 'u.id')
+//     .join('victim as u', 'c.professor_id', 'u.id')
 //     .select('s.id as studentId', 's.name', 'c.email', 'c.image_url')
 //     .where({'professor_id' : id})
 //     .then(students => {

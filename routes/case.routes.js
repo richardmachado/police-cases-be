@@ -102,10 +102,10 @@ router.put('/:id', (req, res) => {
 });
 
  /** 
-* @api {delete} api/cases/:id DELETE a Victim
-* @apiName deleteVictim
-* @apiGroup Victim
-* @apiParam {Number} id Victim id
+* @api {delete} api/cases/:id DELETE a Case
+* @apiName deleteCase
+* @apiGroup Case
+* @apiParam {Number} id Case id
 *
 * @apiSuccessExample Successful Response
 * HTTP/1.1 200 OK

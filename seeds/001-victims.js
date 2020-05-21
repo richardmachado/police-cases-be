@@ -14,6 +14,26 @@ exports.seed = function(knex) {
           case_id: 1,
           interviewed: false,
           notes: 'cold case, never solved'
+        },
+        {
+          id: 2,
+          name: "Ronald Goldman",
+          sex: "M",
+          address: "9655 Main St",
+          deceased: true,
+          case_id: 1,
+          interviewed: false,
+          notes: 'cold case, never solved'
+        },
+        {
+          id: 3,
+          name: "Jane Doe",
+          sex: "F",
+          address: "None",
+          deceased: true,
+          case_id: 2,
+          interviewed: false,
+          notes: 'identity pending'
         }
       ]);
     });

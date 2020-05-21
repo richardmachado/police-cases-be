@@ -9,15 +9,18 @@ module.exports = {
 
 }
 
-function getCases() {
-    return db.select("*").from('case')
-}
+function getCases(id) {
+    return db('case as c')
+   
+};
 
 function findCaseById(id) {
     return db('case')
-    .where({id})
+        .where({ id })
     .first()
 }
+
+
 
 // function updateVictim(changes, id){
 //     return db('case')
@@ -32,13 +35,12 @@ function findCaseById(id) {
 //     })
 // }
 
+
 function updateCase(changes, id){
     return db('case')
-    .where('id', id)
+    .where({id})
     .update(changes)
-    .then(updated => {
-        updated > 0 ? findCaseById(id) : null
-    })
+    .then(response => findCaseById(id))
 }
 
 function removeCase(id) {

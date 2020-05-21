@@ -32,13 +32,20 @@ function findVictimById(id) {
 //     })
 // }
 
+// function updateVictim(changes, id){
+//     return db('victim')
+//     .where('id', id)
+//     .update(changes)
+//     .then(updated => {
+//         updated > 0 ? findVictimById(id) : null
+//     })
+// }
+
 function updateVictim(changes, id){
     return db('victim')
-    .where('id', id)
+    .where({id})
     .update(changes)
-    .then(updated => {
-        updated > 0 ? findVictimById(id) : null
-    })
+    .then(response => findVictimById(id))
 }
 
 function removeVictim (id) {
